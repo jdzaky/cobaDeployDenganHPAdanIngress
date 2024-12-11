@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cafe-web
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cafe-web
+  template:
+    metadata:
+      labels:
+        app: cafe-web
+    spec:
+      containers:
+      - name: cafe-web
+        image: jdzaky/cafe-web:v1.0
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+          limits:
+            cpu: 500m
+            memory: 500Mi

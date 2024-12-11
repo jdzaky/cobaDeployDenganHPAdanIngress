@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: cafe-web-cert
+  namespace: default
+spec:
+  secretName: cafe-web-tls
+  dnsNames:
+  - cafe-web.southeastasia.cloudapp.azure.com
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer

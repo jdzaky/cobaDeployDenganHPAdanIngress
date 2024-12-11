@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cafe-web-ingress
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: apisix
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+spec:
+  tls:
+  - hosts:
+    - cafe-web.southeastasia.cloudapp.azure.com
+    secretName: cafe-web-tls
+  rules:
+  - host: cafe-web.southeastasia.cloudapp.azure.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: cafe-web-service
+            port:
+              number: 80
